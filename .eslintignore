@@ -1,0 +1,5 @@
+api
+.cache
+coverage
+node_modules
+public/build
