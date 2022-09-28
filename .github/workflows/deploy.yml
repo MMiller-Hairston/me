@@ -80,7 +80,7 @@ jobs:
         run: npm run test:coverage
 
   build:
-    name: Build
+    name: Deploy
     # only build/deploy main branch on pushes
     if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
@@ -103,3 +103,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy
+      - uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID}}
+          vercel-project-id: ${{ secrets.PROJECT_ID}}
